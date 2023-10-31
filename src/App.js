@@ -10,12 +10,14 @@ import { Contactos } from "./components/Contactos";
 import "normalize.css";
 import { AgregarServicio } from "./components/AgregarServicio";
 import { Usuario } from "./components/Usuario";
+// import {Navbar} from "./components/Navbar";
 
 function App() {
   return (
     <div>
       <AuthProvider>
         <Routes>
+          {/* <Navbar/> */}
           <Route
             path="/"
             element={

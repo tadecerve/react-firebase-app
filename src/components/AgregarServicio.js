@@ -4,6 +4,7 @@ import {useForm} from 'react-hook-form';
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../context/authContext";
+import{Link} from 'react-router-dom'
 
 
 export function AgregarServicio() {
@@ -34,6 +35,7 @@ export function AgregarServicio() {
       <div className="container">
         <h1 className="main-title">Muchas gracias por subir tu servicio</h1>
         <p>Tu numero de servicio es: {servicioId}</p>
+        <Link to= "/">Volver al Inicio</Link>
       </div>
     )
   }
