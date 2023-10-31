@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React,{ useState } from "react";
 import { useAuth } from "../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "./Alert";
@@ -14,9 +14,12 @@ export function Register() {
   const navigate = useNavigate();
   const [error, setError] = useState();
 
+
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
   };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -27,7 +30,8 @@ export function Register() {
     }
     try {
       await signup(user.email, user.password);
-      navigate("/");
+      navigate("/Usuario");
+
     } catch (error) {
       if (error.code === "auth/internal-error") {
         setError("Correo Invalido");
@@ -37,6 +41,7 @@ export function Register() {
       }
 
       // setError(error.message);
+
     }
   };
   // Imagen Fondo

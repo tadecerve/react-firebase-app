@@ -4,12 +4,12 @@ import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import { AuthProvider } from "./context/authContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import "boxicons";
 import { ProductosLista } from "./components/index";
 import { Nosotros } from "./components/Nosotros";
 import { Contactos } from "./components/Contactos";
 import "normalize.css";
 import { AgregarServicio } from "./components/AgregarServicio";
+import { Usuario } from "./components/Usuario";
 
 function App() {
   return (
@@ -53,6 +53,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <AgregarServicio />
+              </ProtectedRoute>
+            }
+          ></Route>
+
+          <Route
+            path="/usuario"
+            element={
+              <ProtectedRoute>
+                <Usuario />
               </ProtectedRoute>
             }
           ></Route>

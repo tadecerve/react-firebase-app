@@ -9,13 +9,13 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 
 export const authContext = createContext();
 
 export const useAuth = () => {
   const context = useContext(authContext);
-  if (!context) throw new Error("There i no auth provider");
+  if (!context) throw new Error("There is no auth provider");
   return context;
 };
 

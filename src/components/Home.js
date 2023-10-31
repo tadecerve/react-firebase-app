@@ -1,5 +1,7 @@
 import { useAuth } from "../context/authContext";
+import {  signOut } from "firebase/auth";
 import "../styles.css";
+import { auth } from "../firebase";
 
 
 
@@ -7,7 +9,9 @@ export function Home() {
   // const authContext = useContext(context)
   const { user, logout } = useAuth();
   
-  console.log(user);
+  console.log(user.email);
+
+  
   const handleLogout = async () => {
     try {
       await logout();
@@ -39,9 +43,9 @@ export function Home() {
             <a href="/Contactos" className="navegacion__enlace">
               Contacto
             </a>
-            <a href="/login" className="navegacion__enlace">
+            <button onClick={()=> signOut(auth)} className="navegacion__enlace"> 
               Salir
-            </a>
+            </button> 
           </nav>
         </div>
       </div>
@@ -49,7 +53,7 @@ export function Home() {
       <div className="header__texto">
         <h2 className="no-margin">Blog de servicios para contratar</h2>
         <p className="no-margin">
-          Postulá tu servicio que deseas ofrecer o contratá el que necesites
+          Bienvenido, <strong>{}</strong>! Postulá tu servicio que deseas ofrecer o contratá el que necesites
         </p>
       </div>
     </header>

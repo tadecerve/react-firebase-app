@@ -7,14 +7,29 @@ import IMG8 from "../img/services8.jpg";
 import IMG9 from "../img/services9.jpg";
 import "../styles.css";
 import { Link, useNavigate } from "react-router-dom";
-
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+import { useEffect, useState } from "react";
 
 // AQUI IRIAN LOS PRODUCTOS O SERVICIOS DISPONIBLES
 
 export const ProductosLista = () => {
+  const [servicios, setServicios] = useState([]);
+
+  useEffect(() => {
+    const serviciosRef = collection(db, "servicios");
+
+    getDocs(serviciosRef).then((resp) => {
+      setServicios(
+        resp.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id }; //unir el Id con los datos de adentro
+        })
+      );
+    });
+  });
+
   return (
     <>
-      //
       <main className="contenedor">
         <h3 className="centrar-texto">
           Todos nuestros servicios para contratar
@@ -164,12 +179,11 @@ export const ProductosLista = () => {
         </div>
       </main>
 
-      <p
-          className="my-4 text-black flex justify-between
-                px-3  "
-        >
-           <Link to="/AgregarServicio">Agregar Servicio</Link>
+      <div className="campo">
+        <p className="boton boton--primario ">
+          <Link to="/AgregarServicio">Agregar Servicio</Link>
         </p>
+      </div>
 
       {/* FOOTER */}
       <footer className="footer">

@@ -1,9 +1,10 @@
 import React from "react";
 import "../styles.css";
-// import ImgNosotros from '../img/services2.jpg'
+
+
 
 export const Contactos = () => {
-
+ 
   
   return (
     <div>
@@ -92,7 +93,6 @@ export const Contactos = () => {
           </div>
         </form>
       </main>
-
 
 
 

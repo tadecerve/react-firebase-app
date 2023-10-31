@@ -1,26 +1,32 @@
 import React, { useState } from "react";
 import "../styles.css";
-// import "../agregarservicio.css"; // Importa el archivo CSS
+import {useForm} from 'react-hook-form';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { useAuth } from "../context/authContext";
+
 
 export function AgregarServicio() {
-  const [servicio, setServicio] = useState({
-    imagen: "",
-    titulo: "",
-    precio: "",
-    telefono: "",
-    descripcion: "",
-  });
+  
+  const {register, handleSubmit} = useForm ();
+  const { user, logout } = useAuth();
+  console.log(user);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setServicio({ ...servicio, [name]: value });
-  };
+  const agregarServicio = (data) => {
+    const pedido = {
+      servicio:data
+    }
+    console.log(pedido);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí puedes enviar los datos del servicio a tu servidor o hacer lo que necesites.
-    console.log("Datos del servicio:", servicio);
-  };
+    const serviciosRef = collection(db,"servicios");
+
+    addDoc(serviciosRef,pedido)
+      .then((doc)=> {
+        console.log(doc.id);
+        
+      })
+  }
+
 
   return (
     <div>
@@ -57,9 +63,67 @@ export function AgregarServicio() {
           </p>
         </div>
       </header>
-      {/* Fin Header */}
+      
 
-      <div>
+      <div className="container">
+          <h1 className="main-title"> Agregar Servicio </h1>
+          <form className="formulario" onSubmit={handleSubmit(agregarServicio)}>
+
+            <input type="text" placeholder="Ingresa el titulo del servicio" {...register("titulo")}/>
+            <input type="number" placeholder="Precio" {...register("precio")} />
+
+            <button className="agregar" type="submit"> Agregar Servicio </button>
+
+          </form>
+
+      </div>
+
+      
+
+    
+    
+     
+      
+
+
+
+
+
+
+
+
+      
+      <footer className="footer">
+        <div className="contenedor">
+          <div className="barra">
+            <a className="logo" href="index.html">
+              <h1 className="logo__nombre no-margin centrar-texto">
+                Blog<span className="logo__bold">DeServicios</span>
+              </h1>
+            </a>
+
+            <nav className="navegacion">
+              <a href="/Nosotros" className="navegacion__enlace">
+                Nosotros
+              </a>
+              <a href="/" className="navegacion__enlace">
+                Servicios
+              </a>
+              <a href="/Contactos" className="navegacion__enlace">
+                Contacto
+              </a>
+              <a href="/login" className="navegacion__enlace">
+                Salir
+              </a>
+            </nav>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+/*       <div>
         <main className="contenedor">
           <h2 className="centrar-texto">Agregar un Servicio</h2>
           <form className="formulario" onSubmit={handleSubmit}>
@@ -172,36 +236,4 @@ export function AgregarServicio() {
               Contact
             </button>
           </li>
-        </ul>
-
-        {/* FOOTER */}
-        <footer className="footer">
-          <div className="contenedor">
-            <div className="barra">
-              <a className="logo" href="index.html">
-                <h1 className="logo__nombre no-margin centrar-texto">
-                  Blog<span className="logo__bold">DeServicios</span>
-                </h1>
-              </a>
-
-              <nav className="navegacion">
-                <a href="/Nosotros" className="navegacion__enlace">
-                  Nosotros
-                </a>
-                <a href="/" className="navegacion__enlace">
-                  Servicios
-                </a>
-                <a href="/Contactos" className="navegacion__enlace">
-                  Contacto
-                </a>
-                <a href="/login" className="navegacion__enlace">
-                  Salir
-                </a>
-              </nav>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
-  );
-}
+        </ul> */
