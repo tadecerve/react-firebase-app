@@ -8,6 +8,7 @@ import { useAuth } from "../context/authContext";
 
 export function AgregarServicio() {
   
+  const [servicioId,setServicioId]= useState("");
   const {register, handleSubmit} = useForm ();
   const { user, logout } = useAuth();
   console.log(user);
@@ -22,11 +23,20 @@ export function AgregarServicio() {
 
     addDoc(serviciosRef,pedido)
       .then((doc)=> {
+        setServicioId(doc.id);
         console.log(doc.id);
         
       })
   }
 
+  if(servicioId) {
+    return (
+      <div className="container">
+        <h1 className="main-title">Muchas gracias por subir tu servicio</h1>
+        <p>Tu numero de servicio es: {servicioId}</p>
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -71,6 +81,7 @@ export function AgregarServicio() {
 
             <input type="text" placeholder="Ingresa el titulo del servicio" {...register("titulo")}/>
             <input type="number" placeholder="Precio" {...register("precio")} />
+            <input type="number" placeholder="Telefono" {...register("telefono")} />
 
             <button className="agregar" type="submit"> Agregar Servicio </button>
 
@@ -122,118 +133,3 @@ export function AgregarServicio() {
     </div>
   );
 }
-
-/*       <div>
-        <main className="contenedor">
-          <h2 className="centrar-texto">Agregar un Servicio</h2>
-          <form className="formulario" onSubmit={handleSubmit}>
-            <div className="campo">
-              <label className="campo__label">Imagen:</label>
-              <input
-                className="campo__field"
-                type="text"
-                name="imagen"
-                placeholder="Inserte su imagen"
-                value={servicio.imagen}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="campo">
-              <label className="campo__label">Titulo del Servicio:</label>
-              <input
-                type="text"
-                name="titulo"
-                placeholder="ej: Vigilancia 24hs"
-                value={servicio.titulo}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="campo">
-              <label className="campo__label">Precio:</label>
-              <input
-                type="text"
-                name="precio"
-                placeholder="$3033"
-                value={servicio.precio}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="campo">
-              <label className="campo__label">Teléfono:</label>
-              <input
-                type="text"
-                name="telefono"
-                placeholder="ej: 3564124578"
-                value={servicio.telefono}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="campo">
-              <label className="campo__label">Descripción:</label>
-              <textarea
-                className="campo__field campo__field--textarea"
-                name="descripcion"
-                value={servicio.descripcion}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="campo">
-              <input
-                type="submit"
-                value="Enviar"
-                className="boton boton--primario"
-              />
-            </div>
-          </form>
-        </main>
-        <ul
-          className="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm"
-          id="pillNav2"
-          role="tablist"
-          style={{
-            "--bs-nav-link-color": "var(--bs-white)",
-            "--bs-nav-pills-link-active-color": "var(--bs-primary)",
-            "--bs-nav-pills-link-active-bg": "var(--bs-white)",
-          }}
-        >
-          <li className="nav-item" role="presentation">
-            <button
-              className="nav-link active rounded-5"
-              id="home-tab2"
-              data-bs-toggle="tab"
-              type="button"
-              role="tab"
-              aria-selected="true"
-            >
-              Home
-            </button>
-          </li>
-          <li className="nav-item" role="presentation">
-            <button
-              className="nav-link rounded-5"
-              id="profile-tab2"
-              data-bs-toggle="tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-            >
-              Profile
-            </button>
-          </li>
-          <li className="nav-item" role="presentation">
-            <button
-              className="nav-link rounded-5"
-              id="contact-tab2"
-              data-bs-toggle="tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-            >
-              Contact
-            </button>
-          </li>
-        </ul> */
