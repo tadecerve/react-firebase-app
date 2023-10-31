@@ -4,12 +4,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBc4tYt_6_6TMwA43DlrWfS_GWYXAIHJsA",
-  authDomain: "react-fb-auth-f8395.firebaseapp.com",
-  projectId: "react-fb-auth-f8395",
-  storageBucket: "react-fb-auth-f8395.appspot.com",
-  messagingSenderId: "598602805286",
-  appId: "1:598602805286:web:49023deb261521c72876e7",
+  apiKey: "AIzaSyCxa1hBJV8aI_lQO4qXW9KmNoquD1JtsYA",
+  authDomain: "react-firebase-ingsoft.firebaseapp.com",
+  projectId: "react-firebase-ingsoft",
+  storageBucket: "react-firebase-ingsoft.appspot.com",
+  messagingSenderId: "1039647074254",
+  appId: "1:1039647074254:web:1b0bb12e5b0a3c1356ad9f",
+  measurementId: "G-WQ35PTG8RM"
 };
 
 // Initialize Firebase

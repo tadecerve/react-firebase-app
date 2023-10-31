@@ -1,43 +1,40 @@
 import React, { useState } from "react";
 import "../styles.css";
-import {useForm} from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../context/authContext";
-import{Link} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 export function AgregarServicio() {
-  
-  const [servicioId,setServicioId]= useState("");
-  const {register, handleSubmit} = useForm ();
+  const [servicioId, setServicioId] = useState("");
+
+  const { register, handleSubmit } = useForm();
   const { user, logout } = useAuth();
   console.log(user);
 
   const agregarServicio = (data) => {
     const pedido = {
-      servicio:data
-    }
+      servicio: data,
+    };
     console.log(pedido);
 
-    const serviciosRef = collection(db,"servicios");
+    const serviciosRef = collection(db, "servicios");
 
-    addDoc(serviciosRef,pedido)
-      .then((doc)=> {
-        setServicioId(doc.id);
-        console.log(doc.id);
-        
-      })
-  }
+    addDoc(serviciosRef, pedido).then((doc) => {
+      setServicioId(doc.id);
+      console.log(doc.id);
+    });
+  };
 
-  if(servicioId) {
+  if (servicioId) {
     return (
       <div className="container">
         <h1 className="main-title">Muchas gracias por subir tu servicio</h1>
         <p>Tu numero de servicio es: {servicioId}</p>
-        <Link to= "/">Volver al Inicio</Link>
+        <Link to="/">Volver al Inicio</Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -75,37 +72,29 @@ export function AgregarServicio() {
           </p>
         </div>
       </header>
-      
 
       <div className="container">
-          <h1 className="main-title"> Agregar Servicio </h1>
-          <form className="formulario" onSubmit={handleSubmit(agregarServicio)}>
+        <h1 className="main-title"> Agregar Servicio </h1>
+        <form className="formulario" onSubmit={handleSubmit(agregarServicio)}>
+          <input
+            type="text"
+            placeholder="Ingresa el titulo del servicio"
+            {...register("titulo")}
+          />
+          <input type="number" placeholder="Precio" {...register("precio")} />
+          <input
+            type="number"
+            placeholder="Telefono"
+            {...register("telefono")}
+          />
 
-            <input type="text" placeholder="Ingresa el titulo del servicio" {...register("titulo")}/>
-            <input type="number" placeholder="Precio" {...register("precio")} />
-            <input type="number" placeholder="Telefono" {...register("telefono")} />
-
-            <button className="agregar" type="submit"> Agregar Servicio </button>
-
-          </form>
-
+          <button className="agregar" type="submit">
+            {" "}
+            Agregar Servicio{" "}
+          </button>
+        </form>
       </div>
 
-      
-
-    
-    
-     
-      
-
-
-
-
-
-
-
-
-      
       <footer className="footer">
         <div className="contenedor">
           <div className="barra">
