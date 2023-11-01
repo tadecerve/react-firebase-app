@@ -87,9 +87,7 @@ export function Login() {
                  rounded px-8 pt-6 pb-8 mb-4"
         >
           <div>
-            <label className="flex items-center justify-center h-full text-black">
-              Iniciar Sesion
-            </label>
+          <h1 className = "title"> Iniciar Sesion</h1>
             <label
               htmlFor="email"
               className="block
@@ -152,14 +150,12 @@ export function Login() {
           className="my-4 text-sm flex justify-between
                 px-3 text-white "
         >
-          No tienes una cuenta? <Link to="/register">Registrarse</Link>
+          No tienes una cuenta? <Link className = "link" to="/register"> Registrarse</Link>
         </p>
 
         <button
           onClick={handleGoogleSignin}
-          className="bg-slate-50 hover:gb-slate-200 text-black 
-                shadow-md rounded border-2 border-gray-300 py-2 px-4
-                w-full"
+          className="loginGoogle"
         >
           Google Login
         </button>

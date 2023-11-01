@@ -511,3 +511,139 @@ h3.centrar-texto {
   outline: 2px solid black;
 }
 
+
+/** Usuario  (formulario de registo y logueo)**/ 
+form{
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  text-align: left;
+  padding: 40px 40px;
+  border-color : darkblue;
+}
+
+form div label{
+  color: #000000;
+  text-align: left;
+  font-size: 16px;
+  padding: 0px 10px ;
+}
+
+form div input {
+  outline: none;
+  border: none;
+  color: #000000;
+  border-bottom: solid 1px #000000;
+  padding: 10px 15px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+form div input::placeholder{
+  color : rgba(37, 37, 37, 8.5);
+}
+
+form button{
+  color: #ffffff;
+  border: none;
+  background-color: dodgerblue;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+form .title{
+  display: flex;
+  flex-direction: column;
+  color: skyblue;
+  font-size: 30px;
+  text-align: center;
+}
+
+p .link{
+  color: rgb(0, 157, 205);
+  padding: 0px 25px;
+  font-size: 15px;
+}
+
+form div a{
+  color: rgb(0, 157, 205);
+  padding: 0px 15px;
+  font-size: 15px;
+  text-align: right;
+}
+.loginGoogle{
+  color: #df3333;
+  border: 2px #000000;
+  background-color: rgb(255, 255, 255);
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center center;
+}
+
+/**Usuario.jsx**/
+form{
+  display: flex;
+  flex-direction: column;
+  background:none;
+  text-align: left;
+  padding: 40px 40px;
+  border-color : darkblue;
+}
+
+form input{
+  outline: none;
+  border: none;
+  color: #000000;
+  border-bottom: solid 1px #000000;
+  padding: 15px 15px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3px;
+  border-radius: 10px;
+}
+form input::placeholder{
+  color :rgb(125, 124, 124);
+}
+
+.agregar{
+  color: #ffffff;
+  border: 2px inset ;
+  background-color: dodgerblue;
+  padding: 15px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  text-align: center;
+  position:relative;
+  width: 30%;
+  margin-left: 35%;
+  border-radius: 5px;
+}
+/**agregue un boton cancelar(por las dudas)**/
+.butt_cancelar{
+  position: relative;
+  color: #df3333;
+  border: 3px inset #000000;
+  margin-top: 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 15px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center;
+  width: 30%;
+  border-radius: 5px;
+}
+
+.main-title{
+  display: flex;
+  flex-direction: column;
+  color: black;
+  font-size: 50px;
+  text-align: center;
+  text-decoration: double;
+}

@@ -70,14 +70,13 @@ export function Register() {
           className="bg-white shadow-md
                  rounded px-8 pt-6 pb-8 mb-4"
         >
+          
           <div className="mb-4">
-            <label className="flex items-center justify-center h-full text-black">
-              Registrarse
-            </label>
+            <h1 className = "title"> Registrarse</h1>
             <label
               htmlFor="email"
               className="block
-                            text-gray-700 text-sm font-fold mb-2"
+                text-gray-700 text-sm font-fold mb-2"
             >
               Email
             </label>
@@ -124,7 +123,7 @@ export function Register() {
           className="my-4 text-sm flex justify-between
                 px-1 text-white"
         >
-          Ya tienes una cuenta?<Link to="/login">Iniciar Sesion</Link>
+          Ya tienes una cuenta?<Link className = "link" to="/login">Iniciar Sesion</Link>
         </p>
       </div>
     </div>
