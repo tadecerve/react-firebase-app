@@ -1,37 +1,43 @@
 import React, { useState } from "react";
 import "../styles.css";
 import { useForm } from "react-hook-form";
+
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
+
 import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export function AgregarServicio() {
   const [servicioId, setServicioId] = useState("");
 
   const { register, handleSubmit } = useForm();
-  const { user, logout } = useAuth();
-  console.log(user);
 
   const agregarServicio = (data) => {
+
     const pedido = {
-      servicio: data,
+      ...data,
+      
     };
     console.log(pedido);
 
     const serviciosRef = collection(db, "servicios");
 
-    addDoc(serviciosRef, pedido).then((doc) => {
-      setServicioId(doc.id);
-      console.log(doc.id);
+    addDoc(serviciosRef, pedido)
+      .then((doc) => {
+        // pedido.id = doc.id;
+        setServicioId(doc.id);
+        console.log(doc.id);
     });
   };
 
   if (servicioId) {
     return (
       <div className="container">
-        <h1 className="main-title">Muchas gracias por subir tu servicio</h1>
+        <Navbar></Navbar>
+        <h1 className="main-title">Muchas gracias por subir tu servicio! </h1>
         <p>Tu numero de servicio es: {servicioId}</p>
         <Link to="/">Volver al Inicio</Link>
       </div>
@@ -52,43 +58,19 @@ export function AgregarServicio() {
           <input type="number" placeholder="Precio" {...register("precio")} />
           <input
             type="number"
-            placeholder="Telefono"
+            placeholder="telefono"
             {...register("telefono")}
           />
+          <input type="text" placeholder="Agrega una breve descripcion" {...register("descripcion")} />
 
-          <button className="agregar" type="submit">
+          <button className="boton boton--primario" type="submit">
             {" "}
             Agregar Servicio{" "}
           </button>
         </form>
       </div>
 
-      <footer className="footer">
-        <div className="contenedor">
-          <div className="barra">
-            <a className="logo" href="index.html">
-              <h1 className="logo__nombre no-margin centrar-texto">
-                Blog<span className="logo__bold">DeServicios</span>
-              </h1>
-            </a>
-
-            <nav className="navegacion">
-              <a href="/Nosotros" className="navegacion__enlace">
-                Nosotros
-              </a>
-              <a href="/" className="navegacion__enlace">
-                Servicios
-              </a>
-              <a href="/Contactos" className="navegacion__enlace">
-                Contacto
-              </a>
-              <a href="/login" className="navegacion__enlace">
-                Salir
-              </a>
-            </nav>
-          </div>
-        </div>
-      </footer>
+     <Footer></Footer>
     </div>
   );
 }

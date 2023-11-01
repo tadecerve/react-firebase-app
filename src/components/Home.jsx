@@ -1,18 +1,14 @@
 import { useAuth } from "../context/authContext";
-import {  signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import "../styles.css";
 import { auth } from "../firebase";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
-
 
 export function Home() {
   // const authContext = useContext(context)
   const { user, logout } = useAuth();
-  
-  console.log(user.email);
 
-  
   const handleLogout = async () => {
     try {
       await logout();
@@ -20,15 +16,9 @@ export function Home() {
       console.error(error);
     }
   };
-return(
-  <div>
-    <Navbar>
-    
-    </Navbar>
-    
-  </div>
-  
-  
-)
+  return (
+    <div>
+      <Navbar></Navbar>
+    </div>
+  );
 }
-

@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import data from "../data/servicios.json";
 import ItemList from "./ItemList";
-import { pedirDatos } from "../helpers/pedirDatos";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -17,8 +15,11 @@ const ItemListContainer = () => {
           return { ...doc.data(), id: doc.id };
         })
       );
+      
     });
   }, []);
+ 
+
 
   return (
     <div>
