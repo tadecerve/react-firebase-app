@@ -2,6 +2,8 @@ import React from "react";
 import "../styles.css";
 import ImgNosotros from "../img/services2.jpg";
 import { useAuth } from "../context/authContext";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export const Nosotros = () => {
   const { user, logout } = useAuth();
@@ -17,40 +19,7 @@ export const Nosotros = () => {
 
   return (
     <div>
-      <header className="header">
-        <div className="contenedor">
-          <div className="barra">
-            <a className="logo" href="/">
-              <h1 className="logo__nombre no-margin centrar-texto">
-                Blog<span className="logo__bold">DeServicios</span>
-              </h1>
-            </a>
-
-            <nav className="navegacion">
-              <a href="/Nosotros" className="navegacion__enlace">
-                Nosotros
-              </a>
-              <a href="/" className="navegacion__enlace">
-                Servicios
-              </a>
-              <a href="/Contactos" className="navegacion__enlace">
-                Contacto
-              </a>
-              <a href="/login" className="navegacion__enlace">
-                Salir
-              </a>
-            </nav>
-          </div>
-        </div>
-
-        <div className="header__texto">
-          <h2 className="no-margin">Blog de servicios para contratar</h2>
-          <p className="no-margin">
-            Postulá tu servicio que deseas ofrecer o contratá el que necesites
-          </p>
-        </div>
-      </header>
-
+      <Navbar></Navbar>
       <main className="contenedor">
         <h3 className="centrar-texto">Sobre Nosotros</h3>
 
@@ -77,32 +46,7 @@ export const Nosotros = () => {
         </div>
       </main>
 
-      <footer className="footer">
-        <div className="contenedor">
-          <div className="barra">
-            <a className="logo" href="index.html">
-              <h1 className="logo__nombre no-margin centrar-texto">
-                Blog<span className="logo__bold">DeServicios</span>
-              </h1>
-            </a>
-
-            <nav className="navegacion">
-              <a href="/Nosotros" className="navegacion__enlace">
-                Nosotros
-              </a>
-              <a href="#" className="navegacion__enlace">
-                Servicios
-              </a>
-              <a href="/Contactos" className="navegacion__enlace">
-                Contacto
-              </a>
-              <a href="/login" className="navegacion__enlace">
-                Salir
-              </a>
-            </nav>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 };

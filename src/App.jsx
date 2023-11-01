@@ -10,27 +10,34 @@ import { Contactos } from "./components/Contactos";
 import "normalize.css";
 import { AgregarServicio } from "./components/AgregarServicio";
 import { Usuario } from "./components/Usuario";
-// import {Navbar} from "./components/Navbar";
+import { ItemListContainer } from "./components/ItemListContainer";
+import "./styles.css";
+import ItemDetailContainer from "./components/ItemDetailContainer";
+
 
 function App() {
   return (
     <div>
       <AuthProvider>
         <Routes>
-          {/* <Navbar/> */}
           <Route
             path="/"
             element={
               <ProtectedRoute>
                 <Home />
                 <ProductosLista />
+                
               </ProtectedRoute>
             }
-          ></Route>
+          />
+            
+          
 
           <Route path="/login" element={<Login />}></Route>
 
           <Route path="/register" element={<Register></Register>}></Route>
+
+          <Route path="/item/:id" element={<ItemDetailContainer/>}></Route>
 
           <Route
             path="/nosotros"
@@ -67,7 +74,6 @@ function App() {
               </ProtectedRoute>
             }
           ></Route>
-
         </Routes>
       </AuthProvider>
     </div>
@@ -75,5 +81,3 @@ function App() {
 }
 
 export default App;
-
-//className="bg-slate-300 h-screen text-black flex bg-gray-800

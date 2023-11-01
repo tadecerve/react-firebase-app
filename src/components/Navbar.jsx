@@ -40,9 +40,9 @@ const Navbar = () => {
           <Link to="/Contactos" className="navegacion__enlace">
             Contacto
           </Link>
-          <button onClick={()=> signOut(auth)} className="navegacion__enlace"> 
+          <Link onClick={()=> signOut(auth)} className="navegacion__enlace"> 
             Salir
-          </button> 
+          </Link> 
         </nav>
       </div>
     </div>
@@ -50,7 +50,7 @@ const Navbar = () => {
     <div className="header__texto">
       <h2 className="no-margin">Blog de servicios para contratar</h2>
       <p className="no-margin">
-        Bienvenido, <strong>{}</strong>! Postulá tu servicio que deseas ofrecer o contratá el que necesites
+        Bienvenido, Postulá tu servicio que deseas ofrecer o contratá el que necesites
       </p>
     </div>
   </header>
