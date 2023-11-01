@@ -12,7 +12,9 @@ function ItemDetailContainer() {
     const docRef = doc(db, "servicios", id);
     getDoc(docRef)
       .then((resp) => {
-        console.log(resp.data());
+        setItem(
+          { ...resp.data(),id: resp.id}
+        );
       })
   }, [id]);
 

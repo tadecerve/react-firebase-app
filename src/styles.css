@@ -1,33 +1,17 @@
 
-
-/* * {
+* {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue" sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-.App {
-  max-width: 1550px;
-  width: 100%;
-  min-height: 100vh;
-  margin: 0 auto;
-  box-shadow: 0 5px 6px #08a05ca4;
-  padding: 0 15px;
   box-sizing: border-box;
-} */
+  font-family: sans-serif;
+}
 
 :root{
   --fuenteHeading: 'PT Sans', sans-serif;
   --fuenteParrafos: 'Open Sans', sans-serif;
-
+  --clr-main: #c56cee;
+  --clr-main-light: #efdaf9;
+  
   --primario:#784D3C;
   --blanco: #ffffff;
   --negro: #000000;
@@ -537,12 +521,6 @@ header .cart span {
   overflow: hidden;
 }
 
-.servicio {
-  display: flex;
-  flex-direction: column;
-  border-radius: 1rem;
-  overflow: hidden;
-}
 
 .servicio > div {
   padding: 1rem;
@@ -572,4 +550,19 @@ header .cart span {
   background-color: black;
   color: white;
 
+}
+
+.servicio-detalle {
+  padding-block: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.servicio-detalle img {
+  width: 100%;
+}
+
+.servicio-detalle-info h3 {
+  font-size: 2rem;
 }

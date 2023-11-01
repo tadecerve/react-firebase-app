@@ -9,7 +9,7 @@ const Item = ( {servicio}) => {
             <h4>{servicio.titulo}</h4>
             <p>Precio: ${servicio.precio}</p>
             <p>Telefono: {servicio.telefono}</p>
-            <Link className="ver-mas" to={'/item/${servicios.id}'}>Ver Mas</Link>
+            <Link className="ver-mas" to={`/item/${servicio.id}`}>Ver Mas</Link>
         </div>
     </div>
   )
