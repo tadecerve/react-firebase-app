@@ -9,11 +9,11 @@ import { Nosotros } from "./components/Nosotros";
 import { Contactos } from "./components/Contactos";
 import "normalize.css";
 import { AgregarServicio } from "./components/AgregarServicio";
-import { Usuario } from "./components/Usuario";
-import { ItemListContainer } from "./components/ItemListContainer";
+
 import "./styles.css";
 import ItemDetailContainer from "./components/ItemDetailContainer";
-
+import { MisServicios } from "./components/UsuarioServicios";
+import EditarPerfil from "./components/EditarPerfil";
 
 function App() {
   return (
@@ -30,8 +30,9 @@ function App() {
               </ProtectedRoute>
             }
           />
-            
-          
+          <Route path="/editarPerfil" element={<EditarPerfil></EditarPerfil>} ></Route>
+        
+          <Route path="/misServicios" element={<MisServicios></MisServicios>}></Route>
 
           <Route path="/login" element={<Login />}></Route>
 
@@ -66,14 +67,7 @@ function App() {
             }
           ></Route>
 
-          <Route
-            path="/usuario"
-            element={
-              <ProtectedRoute>
-                <Usuario />
-              </ProtectedRoute>
-            }
-          ></Route>
+       
         </Routes>
       </AuthProvider>
     </div>

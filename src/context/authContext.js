@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 
 import { auth, db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 export const authContext = createContext();
 
@@ -23,9 +24,22 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const signup = (email, password) =>
-    createUserWithEmailAndPassword(auth, email, password);
-
+  const signup = (email, password, name, lastName, phone, ubicacion) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // El usuario se ha registrado correctamente
+        const user = userCredential.user;
+        const userRef = doc(db, "users", user.uid);
+        return setDoc(userRef, {
+          email: user.email,
+          name: name,
+          lastName: lastName,
+          phone: phone,
+          ubicacion: ubicacion,
+          // Puedes agregar aquí otros campos que quieras guardar
+        }, { merge: true });  // La opción merge: true evita sobrescribir otros campos en el documento
+      });
+  };
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 

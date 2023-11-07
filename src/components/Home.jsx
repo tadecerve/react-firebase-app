@@ -16,6 +16,7 @@ export function Home() {
       console.error(error);
     }
   };
+  console.log(user.id);
   return (
     <div>
       <Navbar></Navbar>

@@ -647,3 +647,10 @@ form input::placeholder{
   text-align: center;
   text-decoration: double;
 }
+
+.servicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}

@@ -1,10 +1,4 @@
 import React from "react";
-import IMG1 from "../img/curso1.jpg";
-import IMG5 from "../img/services5.jpg";
-import IMG4 from "../img/services4.jpg";
-import IMG7 from "../img/services7.jpg";
-import IMG8 from "../img/services8.jpg";
-import IMG9 from "../img/services9.jpg";
 import "../styles.css";
 import { Link, useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";

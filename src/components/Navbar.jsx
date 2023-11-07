@@ -29,12 +29,14 @@ const Navbar = () => {
             <Link to="/nosotros" className="navegacion__enlace">
               Nosotros
             </Link>
+            <Link to="/misServicios" className="navegacion__enlace">Mis Servicios</Link>
             <Link to="/" className="navegacion__enlace">
               Servicios
             </Link>
             <Link to="/Contactos" className="navegacion__enlace">
               Contacto
             </Link>
+            <Link to="/editarPerfil" className="navegacion__enlace">Editar Perfil</Link>
             <Link onClick={() => signOut(auth)} className="navegacion__enlace">
               Salir
             </Link>

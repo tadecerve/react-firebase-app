@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "./Alert";
@@ -10,15 +10,33 @@ export function Register() {
     password: "",
   });
 
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [ubicacion, setUbicacion] = useState("");
+
   const { signup } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
 
-
   const handleChange = ({ target: { name, value } }) => {
-    setUser({ ...user, [name]: value });
+    switch (name) {
+      case "name":
+        setName(value);
+        break;
+      case "lastName":
+        setLastName(value);
+        break;
+      case "phone":
+        setPhone(value);
+        break;
+      case "ubicacion":
+        setUbicacion(value);
+        break;
+      default:
+        setUser({ ...user, [name]: value });
+    }
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,9 +47,15 @@ export function Register() {
       return;
     }
     try {
-      await signup(user.email, user.password);
-      navigate("/Usuario");
-
+      await signup(
+        user.email,
+        user.password,
+        name,
+        lastName,
+        phone,
+        ubicacion
+      );
+      navigate("/");
     } catch (error) {
       if (error.code === "auth/internal-error") {
         setError("Correo Invalido");
@@ -41,7 +65,6 @@ export function Register() {
       }
 
       // setError(error.message);
-
     }
   };
   // Imagen Fondo
@@ -70,9 +93,8 @@ export function Register() {
           className="bg-white shadow-md
                  rounded px-8 pt-6 pb-8 mb-4"
         >
-          
           <div className="mb-4">
-            <h1 className = "title"> Registrarse</h1>
+            <h1 className="title"> Registrarse</h1>
             <label
               htmlFor="email"
               className="block
@@ -89,6 +111,70 @@ export function Register() {
                             focus:outline-none focus:shadow-outline"
               onChange={handleChange}
             ></input>
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="name"
+              className="block text-gray-700 text-sm font-fold mb-2"
+            >
+              Nombre
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Tu nombre"
+              className="shadow appearance-none border rounded text-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="lastName"
+              className="block text-gray-700 text-sm font-fold mb-2"
+            >
+              Apellido
+            </label>
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Tu apellido"
+              className="shadow appearance-none border rounded text-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="phone"
+              className="block text-gray-700 text-sm font-fold mb-2"
+            >
+              Teléfono
+            </label>
+            <input
+              type="text"
+              name="phone"
+              placeholder="Tu teléfono"
+              className="shadow appearance-none border rounded text-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="profileImage"
+              className="block text-gray-700 text-sm font-fold mb-2"
+            >
+              Ubicacion
+            </label>
+            <input
+              type="text"
+              name="profileImage"
+              placeholder="Ciudad en la que reside"
+              className="shadow appearance-none border rounded text-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-4">
@@ -123,7 +209,10 @@ export function Register() {
           className="my-4 text-sm flex justify-between
                 px-1 text-white"
         >
-          Ya tienes una cuenta?<Link className = "link" to="/login">Iniciar Sesion</Link>
+          Ya tienes una cuenta?
+          <Link className="link" to="/login">
+            Iniciar Sesion
+          </Link>
         </p>
       </div>
     </div>
