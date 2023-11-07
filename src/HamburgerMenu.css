@@ -1,0 +1,53 @@
+/* HamburgerMenu.css */
+.menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #333;
+    transition: 0.5s;
+  }
+  
+  .menu.open {
+    left: 0;
+  }
+  
+  .menu a {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  button div {
+    width: 30px;
+    height: 3px;
+    background: #333;
+    margin: 5px 0;
+    transition: 0.4s;
+  }
+  
+  button div.open {
+    background: #fff;
+  }
+  
+  button.open div:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  
+  button.open div:nth-child(2) {
+    opacity: 0;
+  }
+  
+  button.open div:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+  

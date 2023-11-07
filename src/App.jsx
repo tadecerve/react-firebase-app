@@ -9,11 +9,14 @@ import { Nosotros } from "./components/Nosotros";
 import { Contactos } from "./components/Contactos";
 import "normalize.css";
 import { AgregarServicio } from "./components/AgregarServicio";
-
 import "./styles.css";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import { MisServicios } from "./components/UsuarioServicios";
 import EditarPerfil from "./components/EditarPerfil";
+import ServiciosContratados from "./components/ServiciosContratados";
+import Favoritos from "./components/Favoritos";
+import EditarServicio from "./components/EditarServicio";
+
 
 function App() {
   return (
@@ -26,48 +29,32 @@ function App() {
               <ProtectedRoute>
                 <Home />
                 <ProductosLista />
-                
               </ProtectedRoute>
             }
           />
-          <Route path="/editarPerfil" element={<EditarPerfil></EditarPerfil>} ></Route>
-        
-          <Route path="/misServicios" element={<MisServicios></MisServicios>}></Route>
+          <Route path="/misServicios" element={<MisServicios />}></Route>
+
+          <Route path="/misServicios/editarServicio/:id" element={<EditarServicio />} />
 
           <Route path="/login" element={<Login />}></Route>
 
           <Route path="/register" element={<Register></Register>}></Route>
 
-          <Route path="/item/:id" element={<ItemDetailContainer/>}></Route>
+          <Route path="/item/:id" element={<ItemDetailContainer />}></Route>
 
-          <Route
-            path="/nosotros"
-            element={
-              <ProtectedRoute>
-                <Nosotros />
-              </ProtectedRoute>
-            }
-          ></Route>
+          <Route path="/nosotros" element={<ProtectedRoute><Nosotros /> </ProtectedRoute>} ></Route>
 
-          <Route
-            path="/contactos"
-            element={
-              <ProtectedRoute>
-                <Contactos />
-              </ProtectedRoute>
-            }
-          ></Route>
+          <Route path="/contactos" element={<ProtectedRoute> <Contactos /></ProtectedRoute>}></Route>
 
-          <Route
-            path="/agregarservicio"
-            element={
-              <ProtectedRoute>
-                <AgregarServicio />
-              </ProtectedRoute>
-            }
-          ></Route>
+          <Route path="/agregarservicio"element={ <ProtectedRoute> <AgregarServicio /> </ProtectedRoute>}></Route>
 
-       
+          <Route path="/serviciosContratados" element={<ServiciosContratados></ServiciosContratados>} ></Route>
+
+          <Route path="/serviciosFavoritos" element={<Favoritos></Favoritos>} ></Route>
+
+          <Route path="/editarPerfil" element={<EditarPerfil></EditarPerfil>}></Route>
+
+            
         </Routes>
       </AuthProvider>
     </div>

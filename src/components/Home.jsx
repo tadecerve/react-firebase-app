@@ -1,5 +1,5 @@
 import { useAuth } from "../context/authContext";
-import { signOut } from "firebase/auth";
+
 import "../styles.css";
 import { auth } from "../firebase";
 import { Link } from "react-router-dom";
@@ -16,7 +16,8 @@ export function Home() {
       console.error(error);
     }
   };
-  console.log(user.id);
+  console.log(user.uid);
+
   return (
     <div>
       <Navbar></Navbar>
