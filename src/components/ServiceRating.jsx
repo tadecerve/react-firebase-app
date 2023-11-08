@@ -1,68 +1,80 @@
-import { useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../firebase";
-import { useAuth } from "../context/authContext";
+import { useState,useEffect } from 'react';
+import { doc, setDoc,getDoc } from "firebase/firestore";
+import { db } from '../firebase'; 
+import { useAuth } from '../context/authContext';
 
-export function ServiceRating({ serviceId, onRatingSubmit }) {
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
-  const { user } = useAuth();
 
-  console.log(user.uid);
-  console.log(serviceId);
+export function ServiceRating({ serviceId }) {
+  const [rating, setRating] = useState(0); // Estado para almacenar la calificación del usuario
+  const [comment, setComment] = useState(''); // Estado para almacenar el comentario del usuario
+  const { user } = useAuth(); // Obtén el usuario actual
+  const [isFavorited, setIsFavorited] = useState(false); 
 
-  const handleCommentChange = (e) => {
-    setComment(e.target.value);
+
+  useEffect(() => {
+    const checkIfFavorited = async () => {
+      const docRef = doc(db, 'usersrating', `${user.uid}_${serviceId}`);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setIsFavorited(true);
+      }
+    };
+
+    if (user) {
+      checkIfFavorited();
+    }
+  }, [user, serviceId]);
+
+
+  const handleRatingChange = (newRating) => {
+    setRating(newRating);
   };
 
-  const handleSubmit = () => {
-    // Verifica que la calificación sea mayor que 0 y que se haya ingresado un comentario
-    if (rating > 0 && comment.trim() !== "") {
-      onRatingSubmit(serviceId, rating, comment);
-      // Limpia los valores después de enviar la calificación
-      setRating(0);
-      setComment("");
+  const handleCommentChange = (event) => {
+    setComment(event.target.value); // Actualiza el estado del comentario cuando el usuario cambia el texto en el área de texto
+  };
+
+  const handleSubmit = async () => {
+    // Verifica que user no es undefined antes de intentar acceder a user.uid
+    if (user && !isFavorited ) {
+      // Crea un objeto con los datos de la calificación
+      const ratingData = {
+        serviceId: serviceId,
+        rate: rating,
+        userId: user.uid,
+        comment: comment, 
+      };
+
+      // Envía los datos a Firebase
+      await setDoc(doc(db, "usersrating", `${user.uid}_${serviceId}`), ratingData);
+      alert('Calificación y comentario enviados con éxito!');
     } else {
-      // Muestra un mensaje de error si la calificación o el comentario son inválidos
-      alert(
-        "Por favor, selecciona una calificación y escribe un comentario válido."
-      );
+      // Maneja el caso en que user es undefined (es decir, el usuario no está autenticado)
+      console.log('El usuario no está autenticado');
     }
   };
 
-  const handleRatingChange = async (newRating) => {
-    setRating(newRating);
-
-    const ratingData = {
-      serviceId: serviceId,
-      rate: newRating,
-      userId: user.uid,
-      comment: comment,
-    };
-    await setDoc(
-      doc(db, "usersrating", `${user.uid}_${serviceId}`),
-      ratingData
-    );
-  };
-
   return (
-    <div>
+    <div className="service-rating">
       <h3>Calificar este servicio</h3>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <span
-          key={star}
-          onClick={() => handleRatingChange(star)}
-          style={{ cursor: "pointer" }}
-        >
-          {star <= rating ? "⭐" : "☆"}
-        </span>
-      ))}
+      <div className="stars">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <span
+            key={star}
+            onClick={() => handleRatingChange(star)}
+            className={star <= rating ? 'star selected' : 'star'}
+          >
+            {star <= rating ? '⭐' : '☆'}
+          </span>
+        ))}
+      </div>
       <textarea
+        className="comment-input"
         placeholder="Deja un comentario"
         value={comment}
         onChange={handleCommentChange}
       ></textarea>
-      <button onClick={handleSubmit}>Enviar calificación y comentario</button>
+      <button className="submit-button" onClick={handleSubmit}>Enviar calificación y comentario</button>
     </div>
   );
 }

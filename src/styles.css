@@ -161,127 +161,6 @@ h3.centrar-texto {
 
 
 
-
-
-
-
-/*------------------------------ FIN HEADER---------------------------------*/
-
-
-/* ---------------MEDIA-------------------
-@media only screen and (max-width: 600px){ 
-      header ul{
-        display: none;
-      }
-} */
-
-/*-------------------PRODUCTOS ZAPAS----------------------- */
-/* 
- .titleServicios {
-  font-size: 2.4rem;
-  padding-top: 7rem;
-  text-align: center;
-  border-color: #000000;
-  font-family: var(--fuenteHeading);
-} 
-
-.productos {
-   padding: 5rem 2rem; 
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-  gap: 3rem 1rem;
-  box-sizing: border-box;
-}
-
-.producto {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 1px 10px 10px 2px rgb(0, 0, 0, 0.2);
-  border: 6px solid transparent;
-  border-radius: 5px;
-}
-
-.producto:hover {
-  border: 6px solid #203661a4;
-}
-
-.producto__img img {
-  width: 310px;
-}
-
-.producto__footer {
-  padding: 1rem;
-}
-
-.producto__footer h1 {
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #1a202c;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.producto__footer p {
-  font-weight: 700;
-  font-size: 18px;
-  color: rgb(0, 0, 0, 0.555);
-  text-transform: uppercase;
-}
-.producto__footer .price {
-  font-size: 2rem;
-  color: #1a202c;
-}
-
-.producto .buttom {
-  width: 100%;
-  height: 45px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1rem 4rem;
-}
-
-.buttom .btn {
-  border: none;
-  outline: 0;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.buttom button {
-  background-color: var(--primario);
-  max-width: 250px;
-  width: 100%;
-  margin: 0 auto;
-  font-size: 1.5rem;
-  color: white;
-  font-weight: 600;
-}
-
-.buttom div {
-  background-color: #352a25;
-  display: grid;
-  align-items: center;
-  margin-left: -2rem;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.buttom div a {
-  color: white;
-  font-weight: 700;
-}
-
-.buttom div a:hover {
-  color: white;
-} */
-
-
-/* ----------------------------------------------------- */
-
-
-
 /** SOBRE NOSOTROS **/
 @media (min-width: 768px) {
   .sobre-nosotros{
@@ -500,7 +379,7 @@ h3.centrar-texto {
 
 .formulario input {
   padding: .5rem;
-  width: 18rem;
+  width: 100rem;
   border-radius: .5rem;
   border: 2px solid black;
 }
@@ -521,6 +400,7 @@ form{
   padding: 40px 40px;
   border-color : darkblue;
 }
+
 
 form div label{
   color: #000000;
@@ -654,3 +534,283 @@ form input::placeholder{
   align-items: center;
   margin-bottom: 20px;
 }
+
+
+
+/*Editar Perfil*/ /*Agregar de classname = "EditarPerfil" al form que esta en el jsx*/
+.EditarPerfil{
+  display: flex;
+  flex-direction: column;
+  background: #504e4e;
+  text-align: center;
+  padding: 40px 40px;
+  border-color : darkblue;
+  
+}
+
+.EditarPerfil label{
+  display: flex;
+  flex-direction: column;
+  color: rgb(247, 247, 247);
+  font-size: 30px;
+  text-align: center;
+}
+
+.EditarPerfil label input{ 
+  border:none ;
+  color: #000000;
+  border-bottom: solid 1px #000000;
+  padding: 15px 15px;
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 3px;
+  border-radius: 10px;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.EditarPerfil button{
+  color: #ffffff;
+  border: 2px inset ;
+  background-color: rgb(20, 22, 24);
+  padding: 15px 15px;
+  font-size: 20px;
+  margin-right: 20px;
+  margin-top: 15px;
+  text-align: center;
+  width: 20%;
+  margin-left: 50%;
+  border-radius: 5px;
+}
+
+
+.MisServicios {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.MisServicios img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.MisServicios h2 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.MisServicios p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.boton-serv {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+
+
+/*Editar Servicio*/ /*Agregar de classname = ".EditarServicio" al form que esta en el jsx*/
+.EditarServicio{
+  display: flex;
+  flex-direction: column;
+  background: #504e4e;
+  text-align: center;
+  padding: 40px 40px;
+  border-color : darkblue;
+  
+}
+
+.EditarServicio label{
+  display: flex;
+  flex-direction: column;
+  color: rgb(247, 247, 247);
+  font-size: 30px;
+  text-align: center;
+}
+
+.EditarServicio label input{ 
+  border:none ;
+  color: #000000;
+  border-bottom: solid 1px #000000;
+  padding: 15px 15px;
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 3px;
+  border-radius: 10px;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.EditarServicio button{
+  color: #ffffff;
+  border: 2px inset ;
+  background-color: rgb(20, 22, 24);
+  padding: 15px 15px;
+  font-size: 20px;
+  margin-right: 20px;
+  margin-top: 15px;
+  text-align: center;
+  width: 20%;
+  margin-left: 50%;
+  border-radius: 5px;
+}
+
+
+
+/*Servicios Contratados*/
+
+.ServiciosContratados {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ServiciosContratados img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ServiciosContratados h2 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.ServiciosContratados p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.ServiciosContratados button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+
+
+/*Favoritos*/
+
+.Favoritos {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Favoritos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Favoritos h2 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.Favoritos p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.Favoritos button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/*Service Rating*/
+
+.service-rating {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.stars {
+  margin: 10px 0;
+}
+
+.star {
+  font-size: 24px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.star.selected {
+  color: gold; /* Cambia el color de las estrellas seleccionadas */
+}
+
+.comment-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  background-color: #000102; /* Cambia el color del botón */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3; /* Cambia el color al pasar el cursor por encima */
+}
+
+/*Boton contratar*/
+
+.contratar-button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contratar-button:hover {
+  background-color: #333; /* Cambia el color al pasar el cursor por encima */
+}
+
+
+/*Boton Favoritos*/
+.heart-icon {
+  color: red; /* Cambia el color del corazón */
+  font-size: 24px; /* Ajusta el tamaño del corazón */
+  cursor: pointer;
+}
+
+.heart-icon:hover {
+  color: #ff3333; /* Cambia el color al pasar el cursor por encima */
+}
+
+

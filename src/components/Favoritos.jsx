@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { collection, query, where, onSnapshot, doc,getDoc } from "firebase/firestore";
 import { db,auth } from "../firebase"; 
 import { useAuthState } from "react-firebase-hooks/auth";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import { Link } from "react-router-dom";
+
 const Favoritos = () => {
   const [favorites, setFavorites] = useState([]);
   const [services, setServices] = useState([]);
@@ -38,9 +42,13 @@ const Favoritos = () => {
 
   return (
      <div>
-      {services.map((service, index) => (
+      <Navbar></Navbar>
+      <h1 className="centrar-texto">Mis Servicios Favoritos</h1>
+      {services.length === 0 ? (
+      <p className="">No tienes ningún servicio favorito :(</p>
+      ) :(services.map((service, index) => (
         <div key={index}>
-          <div className="servicio-detalle">
+          <div className="Favoritos">
             <img src={service.imageUrl} alt={service.titulo} />
           </div>
           <h3 className="titulo">{service.titulo}</h3>
@@ -48,7 +56,9 @@ const Favoritos = () => {
           <p className="telefono">Telefono: {service.telefono}</p>
           <p className="descripcion">Descripcion: {service.descripcion}</p>
         </div>
-      ))}
+      ))
+      )}
+      <Footer></Footer>
     </div>
   );
 };

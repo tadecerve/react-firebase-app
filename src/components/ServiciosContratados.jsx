@@ -9,7 +9,9 @@ import {
 } from "firebase/firestore";
 import { db, auth } from "../firebase"; // Asegúrate de que esta ruta sea la correcta para tu archivo de configuración de Firebase
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import { Link } from "react-router-dom";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const ServiciosContratados = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -44,9 +46,10 @@ const ServiciosContratados = () => {
 
   return (
     <div>
+      <Navbar></Navbar>
       {services.map((service, index) => (
         <div key={index}>
-          <div className="servicio-detalle">
+          <div className="ServiciosContratados">
             <img src={service.imageUrl} alt={service.titulo} />
           </div>
           <h3 className="titulo">{service.titulo}</h3>
@@ -55,6 +58,7 @@ const ServiciosContratados = () => {
           <p className="descripcion">Descripcion: {service.descripcion}</p>
         </div>
       ))}
+      <Footer></Footer>
     </div>
   );
 };

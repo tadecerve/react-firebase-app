@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/authContext";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../firebase"; // Asegúrate de que esta es la ruta correcta a tu configuración de Firebase
+import { db } from "../firebase"; 
+import { Link } from "react-router-dom";
 
 const EditarPerfil = () => {
   const { user } = useAuth();
@@ -48,7 +49,7 @@ const EditarPerfil = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="EditarPerfil" onSubmit={handleSubmit}>
       <label>
         Nombre:
         <input
@@ -81,8 +82,13 @@ const EditarPerfil = () => {
           onChange={(e) => setPerfil({ ...perfil, ubicacion: e.target.value })}
         />
       </label>
+     
       <button type="submit" >Guardar cambios</button>
+      <div>
+      <button ><Link to= "/">Volver al menu principal</Link></button>
+      </div>
     </form>
+    
   );
 };
 

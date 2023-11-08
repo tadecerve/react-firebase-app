@@ -3,7 +3,15 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import "../styles.css";
 import { useState, useEffect } from "react";
-import { getDoc, doc, addDoc, collection } from "firebase/firestore";
+import {
+  getDoc,
+  doc,
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../context/authContext";
 import { auth } from "../firebase";
@@ -13,8 +21,11 @@ import { ServiceRating } from "./ServiceRating";
 const ItemDetail = ({ item }) => {
   const [userio, loading, error] = useAuthState(auth);
   const { usuario, logout } = useAuth();
-  console.log(userio.uid);
   const [user, setUser] = useState(null);
+  const [ratings, setRatings] = useState([]);
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  console.log(userio.uid);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,6 +40,37 @@ const ItemDetail = ({ item }) => {
     fetchUserData();
   }, [item.userId]);
 
+  // Check if the current user has already favorited the service
+  useEffect(() => {
+    const checkIfFavorited = async () => {
+      const docRef = doc(db, "favorites", `${userio.uid}_${item.id}`);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setIsFavorited(true);
+      }
+    };
+
+    if (userio) {
+      checkIfFavorited();
+    }
+  }, [usuario, item.id]);
+
+  // Muestra los comentarios de un servicio
+  useEffect(() => {
+    const loadRatings = async () => {
+      const ratingsCollection = collection(db, "usersrating");
+      const ratingsQuery = query(
+        ratingsCollection,
+        where("serviceId", "==", item.id)
+      );
+      const ratingsSnapshot = await getDocs(ratingsQuery);
+      const ratingsData = ratingsSnapshot.docs.map((doc) => doc.data());
+      setRatings(ratingsData);
+    };
+
+    loadRatings();
+  }, [item.id]);
+
   //Añadir a Favoritos
   const handleFavorite = async () => {
     if (!userio) {
@@ -38,13 +80,21 @@ const ItemDetail = ({ item }) => {
       return;
     }
 
+     // Verificar si el servicio ya ha sido añadido a favoritos
+    const docRef = doc(db, "favoritos", `${userio.uid}_${item.id}`);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      alert("Ya tienes este servicio en favoritos");
+      return;
+    }
+
     const favorite = {
       userId: userio.uid, // Usar el ID del usuario autenticado actualmente
       serviceId: item.id,
     };
 
     await addDoc(collection(db, "favoritos"), favorite);
-
+    setIsFavorited(true);
     alert("El servicio ha sido agregado a favoritos con éxito"); // Mostrar un mensaje de éxito
   };
 
@@ -88,11 +138,36 @@ const ItemDetail = ({ item }) => {
           <p className="user">
             Agregado por: {user ? user.name : "Cargando..."}
           </p>
-          <button onClick={() => handleHire(item.id)}>Contratar</button>
-          <button onClick={handleFavorite}>Agregar a favoritos</button>
+          <div className="button-container">
+            <button
+              className="contratar-button"
+              onClick={() => handleHire(item.id)}
+            >
+              Contratar
+            </button>
+            <button
+              className="favorite-button"
+              onClick={handleFavorite}
+              disabled={isFavorited}
+            >
+              {isFavorited ? "Ya en favoritos" : "Agregar a favoritos"}
+            </button>
+            {/* <span className="heart-icon" onClick={handleFavorite}>
+              &#10084;
+            </span> */}
+          </div>
         </div>
-
         <ServiceRating serviceId={item.id} />
+      </div>
+      <div>
+        <h1>Comentarios de este servicio</h1>
+        {ratings.map((rating, index) => (
+          <div key={index}>
+            <p>Comentario: {rating.comment}</p>
+            <p>Calificación: {"⭐".repeat(rating.rate)}</p>
+            <hr />
+          </div>
+        ))}
       </div>
       <Footer></Footer>
     </div>

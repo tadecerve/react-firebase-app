@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import "../styles.css";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 export function MisServicios() {
   const [servicios, setServicios] = useState([]);
@@ -25,29 +26,30 @@ export function MisServicios() {
         setServicios(servicios);
       });
     }
-    
   }, [user]);
-  
-  
 
   return (
     <div>
       <Navbar></Navbar>
-      {servicios.map(servicio => {
+      <h1 className="centrar-texto">Mis servicios</h1>
+      {servicios.map((servicio) => {
         console.log(servicio.id); // Aquí agregas el console.log
         return (
-          <div className="container" key={servicio.id}>
-            <img src={servicio.imageUrl} alt="serviciourlimage" />
+          <div key={servicio.id}>
+            <div className="MisServicios">
+              <img src={servicio.imageUrl} alt="serviciourlimage" />
+            </div>
             <h2>{servicio.titulo}</h2>
-            <p>{servicio.precio}</p>
-            <p>{servicio.telefono}</p>
-            <p>{servicio.estado ? 'Disponible' : 'No disponible'}</p>
+            <p>Precio: ${servicio.precio}</p>
+            <p>Telefono: {servicio.telefono}</p>
+            <p>Estado: {servicio.estado ? "Disponible" : "No disponible"}</p>
             <Link to={`/misServicios/editarServicio/${servicio.id}`}>
-              <button>Editar servicio</button>
+              <button className="boton-serv">Editar servicio</button>
             </Link>
           </div>
         );
       })}
+      <Footer></Footer>
     </div>
   );
 }
